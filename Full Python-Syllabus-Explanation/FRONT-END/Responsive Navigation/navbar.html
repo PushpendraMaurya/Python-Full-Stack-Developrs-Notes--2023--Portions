@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation </title>
+    <style>
+        .navbar {
+            background-color: aqua;
+            border-radius: 10px;
+
+        }
+
+        .navbar:hover {
+            width: 100%;
+            height: 100%;
+            color: black;
+            font-weight: bold;
+            animation: myanimation 10s infinite;
+        }
+
+        @keyframes myanimation {
+            0% {
+                background-color: red;
+            }
+
+            25% {
+                background-color: rgb(243, 243, 12);
+            }
+
+            50% {
+                background-color: rgb(4, 245, 4);
+            }
+
+            75% {
+                background-color: rgb(245, 3, 3);
+            }
+
+            100% {
+                background-color: rgb(241, 6, 202);
+            }
+        }
+
+        .list {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .list li {
+            display: inline-block;
+            padding: 10px;
+            /* border: 1px solid black; */
+        }
+
+        .list li a {
+            text-decoration: none;
+            padding: 12px;
+        }
+
+        .list li a:hover {
+            background-color: brown;
+        }
+
+        #form {
+            float: right;
+
+        }
+
+        #search-input,
+        #search-button {
+            padding: 8px;
+            padding-top: 8px;
+            margin-right: 4px;
+            padding-top: 1px;
+            margin-top: 7px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="navbar ">
+        <ul class="list">
+            <li><a href="">Home </a></li>
+            <li><a href="">About </a></li>
+            <li><a href="">Contact </a></li>
+            <li><a href="">Course </a></li>
+            <li><a href="">About </a></li>
+            <form action="" id="form">
+                <input type="search0" id="search-input" placeholder="Search Here............">
+                <input type="submit" name="Search" value="search" id="search-button">
+            </form>
+
+
+        </ul>
+    </div>
+
+</body>
+
+</html>

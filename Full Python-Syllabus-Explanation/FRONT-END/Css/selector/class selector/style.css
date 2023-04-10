@@ -1,0 +1,27 @@
+body{
+    background-color: aqua;
+}
+
+/* if all tag used same deisgn then use these all */
+.t{
+    background-color: white;
+}
+
+.p{
+    background-color: blueviolet;
+}
+
+
+/* if all tag used different tags then used these */
+
+#p3, #t1{
+    background-color: red;
+}
+
+#p1 ,#t2{
+    background-color: rgb(55, 0, 255);
+}
+
+#p2, #t3{
+    background-color: orange;
+}

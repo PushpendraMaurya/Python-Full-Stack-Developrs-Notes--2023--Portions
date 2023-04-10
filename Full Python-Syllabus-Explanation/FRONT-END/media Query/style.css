@@ -1,0 +1,36 @@
+#heading{
+    text-align: center;
+
+
+}
+
+#left{
+    display: inline-block;
+    width: 48%;
+    background-color: green;
+}
+
+#right{
+    display: inline-block;
+    width: 48%;
+    background-color: aqua;
+}
+
+@media (max-width:576px){
+    #left, #right{
+        display: block;
+        padding: 5px;
+        border: 1px solid yellow;
+        width: 100%;
+    }
+}
+@media(max-width:600px) and (min-width:577px){
+    #heading{
+        background-color: red;
+        color: blue;
+    }
+    #left , #right{
+        color: red;
+        background-color: white;
+    }
+}

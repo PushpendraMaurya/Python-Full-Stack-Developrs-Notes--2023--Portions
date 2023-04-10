@@ -1,0 +1,7 @@
+f = open("hello.txt","w")
+print(f.name)
+print(f.mode)
+print(f.encoding)
+print(f.closed)
+f.close()
+print(f.closed)

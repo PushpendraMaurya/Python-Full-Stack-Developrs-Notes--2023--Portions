@@ -1,0 +1,267 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 48
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show procedures;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'procedures' at line 1
+mysql> show procedures;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'procedures' at line 1
+mysql> use resto;
+Database changed
+mysql> show procesures;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'procesures' at line 1
+mysql> show procedures;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'procedures' at line 1
+mysql> show procedure;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> show procedure;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> show tables;
++-----------------+
+| Tables_in_resto |
++-----------------+
+| admission       |
+| batch_info      |
+| city            |
+| customer        |
+| emp             |
+| orders          |
+| std1            |
++-----------------+
+7 rows in set (0.21 sec)
+
+mysql> use procedures;
+ERROR 1049 (42000): Unknown database 'procedures'
+mysql> use procedures
+ERROR 1049 (42000): Unknown database 'procedures'
+mysql> show procedures;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'procedures' at line 1
+mysql> use resto;
+Database changed
+mysql> show procedures;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'procedures' at line 1
+mysql> show resto.procedures;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'resto.procedures' at line 1
+mysql> show resto.procedure;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'resto.procedure' at line 1
+mysql> anyone intrested to make friendship to me then welcome to my life anyone intrested to make friendship to me then welcome to my life anyone intrested to make friendship to me then welcome to my life
+    -> ^C
+mysql> use resto;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_resto |
++-----------------+
+| admission       |
+| batch_info      |
+| city            |
+| customer        |
+| emp             |
+| orders          |
+| std1            |
++-----------------+
+7 rows in set (0.01 sec)
+
+mysql> select * from customer inner join orderss on customer.cid = orders.oid;
+ERROR 1146 (42S02): Table 'resto.orderss' doesn't exist
+mysql> select * from customer inner join orders on customer.cid = orders.oid;
++-----+------------+------------+-------------------+-----+--------+--------+---------------------+-------------+
+| cid | cname      | cmobile    | cemail            | oid | omenu  | oprice | odate               | customer_id |
++-----+------------+------------+-------------------+-----+--------+--------+---------------------+-------------+
+|   1 | pushpendra | 7388006830 | pushpen@gmail.com |   1 | pizaa  |    500 | 2022-11-11 10:41:13 |           1 |
+|   2 | suraj      | 7896541232 | suraj@gmail.com   |   2 | pizza  |    500 | 2022-11-11 10:41:13 |           2 |
+|   3 | ritya      | 7897897894 | ritya@gmail.com   |   3 | pizaa  |    500 | 2022-11-11 10:41:13 |           3 |
+|   4 | gauri      | 3214563214 | gauriya@gmail.com |   4 | pizza  |    500 | 2022-11-11 10:41:13 |           4 |
+|   5 | ravi       | 7412589632 | ravi@gmail.com    |   5 | samosa |     50 | 2022-11-11 10:41:13 |           1 |
++-----+------------+------------+-------------------+-----+--------+--------+---------------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customer left join orders on customer.cid = orders.oid;
++-----+------------+------------+-------------------+------+--------+--------+---------------------+-------------+
+| cid | cname      | cmobile    | cemail            | oid  | omenu  | oprice | odate               | customer_id |
++-----+------------+------------+-------------------+------+--------+--------+---------------------+-------------+
+|   1 | pushpendra | 7388006830 | pushpen@gmail.com |    1 | pizaa  |    500 | 2022-11-11 10:41:13 |           1 |
+|   2 | suraj      | 7896541232 | suraj@gmail.com   |    2 | pizza  |    500 | 2022-11-11 10:41:13 |           2 |
+|   3 | ritya      | 7897897894 | ritya@gmail.com   |    3 | pizaa  |    500 | 2022-11-11 10:41:13 |           3 |
+|   4 | gauri      | 3214563214 | gauriya@gmail.com |    4 | pizza  |    500 | 2022-11-11 10:41:13 |           4 |
+|   5 | ravi       | 7412589632 | ravi@gmail.com    |    5 | samosa |     50 | 2022-11-11 10:41:13 |           1 |
++-----+------------+------------+-------------------+------+--------+--------+---------------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from customer right  join orders on customer.cid = orders.oid;
++------+------------+------------+-------------------+-----+---------+--------+---------------------+-------------+
+| cid  | cname      | cmobile    | cemail            | oid | omenu   | oprice | odate               | customer_id |
++------+------------+------------+-------------------+-----+---------+--------+---------------------+-------------+
+|    1 | pushpendra | 7388006830 | pushpen@gmail.com |   1 | pizaa   |    500 | 2022-11-11 10:41:13 |           1 |
+|    2 | suraj      | 7896541232 | suraj@gmail.com   |   2 | pizza   |    500 | 2022-11-11 10:41:13 |           2 |
+|    3 | ritya      | 7897897894 | ritya@gmail.com   |   3 | pizaa   |    500 | 2022-11-11 10:41:13 |           3 |
+|    4 | gauri      | 3214563214 | gauriya@gmail.com |   4 | pizza   |    500 | 2022-11-11 10:41:13 |           4 |
+|    5 | ravi       | 7412589632 | ravi@gmail.com    |   5 | samosa  |     50 | 2022-11-11 10:41:13 |           1 |
+| NULL | NULL       |       NULL | NULL              |   6 | paneer  |    600 | 2022-11-11 10:41:13 |           1 |
+| NULL | NULL       |       NULL | NULL              |   7 | vadaPav |     22 | 2022-11-15 21:59:14 |           2 |
++------+------------+------------+-------------------+-----+---------+--------+---------------------+-------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from customer outer  join orders on customer.cid = orders.oid;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'outer  join orders on customer.cid = orders.oid' at line 1
+mysql> select * from customer^Coin orders on customer.cid = orders.oid;
+mysql> select a.customer,b.customer from customer a, customer b where a.id = a.id;
+ERROR 1054 (42S22): Unknown column 'a.customer' in 'field list'
+mysql> drop procedure resto.singleinput;
+Query OK, 0 rows affected (0.39 sec)
+
+mysql> drop procedure resto.singleoutput;
+ERROR 1305 (42000): PROCEDURE resto.singleoutput does not exist
+mysql> delimiter &&
+mysql> create procedure showdata()
+    -> begin
+    -> select * from customer;
+    -> select * from orders;
+    -> end &&
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> delimiter ;
+mysql> call showdata;
++-----+------------+------------+-------------------+
+| cid | cname      | cmobile    | cemail            |
++-----+------------+------------+-------------------+
+|   1 | pushpendra | 7388006830 | pushpen@gmail.com |
+|   2 | suraj      | 7896541232 | suraj@gmail.com   |
+|   3 | ritya      | 7897897894 | ritya@gmail.com   |
+|   4 | gauri      | 3214563214 | gauriya@gmail.com |
+|   5 | ravi       | 7412589632 | ravi@gmail.com    |
++-----+------------+------------+-------------------+
+5 rows in set (0.11 sec)
+
++-----+---------+--------+---------------------+-------------+
+| oid | omenu   | oprice | odate               | customer_id |
++-----+---------+--------+---------------------+-------------+
+|   1 | pizaa   |    500 | 2022-11-11 10:41:13 |           1 |
+|   2 | pizza   |    500 | 2022-11-11 10:41:13 |           2 |
+|   3 | pizaa   |    500 | 2022-11-11 10:41:13 |           3 |
+|   4 | pizza   |    500 | 2022-11-11 10:41:13 |           4 |
+|   5 | samosa  |     50 | 2022-11-11 10:41:13 |           1 |
+|   6 | paneer  |    600 | 2022-11-11 10:41:13 |           1 |
+|   7 | vadaPav |     22 | 2022-11-15 21:59:14 |           2 |
++-----+---------+--------+---------------------+-------------+
+7 rows in set (0.18 sec)
+
+Query OK, 0 rows affected (0.25 sec)
+
+mysql> delimiter &&
+mysql> create procedure showalldata()
+    -> begin
+    -> select * from customer;
+    -> select * ^C
+mysql> delimiter &&
+mysql> create procedure showcustomer(in number int)
+    -> begin
+    -> select * from customer limit number;
+    -> end &&
+ERROR 1304 (42000): PROCEDURE showcustomer already exists
+mysql> drop procedure resto.showcustomer;
+    -> ^C
+mysql> drop procedure resto.showcustomer;
+    -> ^C
+mysql> call showcustomer;
+    -> ^C
+mysql> delimiter ;
+mysql> call showcustomer;
+ERROR 1318 (42000): Incorrect number of arguments for PROCEDURE resto.showcustomer; expected 1, got 0
+mysql> call showcustomer(2);
++-----+------------+------------+-------------------+
+| cid | cname      | cmobile    | cemail            |
++-----+------------+------------+-------------------+
+|   1 | pushpendra | 7388006830 | pushpen@gmail.com |
+|   2 | suraj      | 7896541232 | suraj@gmail.com   |
++-----+------------+------------+-------------------+
+2 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> delimiter &&
+mysql> create procedure showprices(out var int)
+    -> begin
+    -> select max(oprice) into var from orders;
+    -> end &&
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> delimiter ;
+mysql> call showprices(@price);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select @price;
++--------+
+| @price |
++--------+
+|    600 |
++--------+
+1 row in set (0.01 sec)
+
+mysql> delimiter &&
+mysql> create procedure nameshow(in var int out var1 varchar(20)
+    -> begin
+    -> select cname into var1 from customer where cid = var;
+    -> end &&
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'out var1 varchar(20)
+begin
+select cname into var1 from customer where cid = var;' at line 1
+mysql> use resto;
+ERROR 1049 (42000): Unknown database 'resto;'
+mysql> delimiter &&
+mysql> create procedure nameing(in var int out var1 varchar(20))
+    -> begin
+    -> select cname into var1 from csutomer where cid = var;
+    -> end &&
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'out var1 varchar(20))
+begin
+select cname into var1 from csutomer where cid = var' at line 1
+mysql> delimiter &&
+mysql> create procedure nameing(in var int out var1 varchar(20))
+    -> begin
+    -> select cname into var1 from customer where cid = var;
+    -> end &&
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'out var1 varchar(20))
+begin
+select cname into var1 from customer where cid = var' at line 1
+mysql> delimiter &&
+mysql> create procedure showprices(inout var int)
+    -> begin
+    -> select oprice into var from orders where oid = var;
+    -> end &&
+ERROR 1304 (42000): PROCEDURE showprices already exists
+mysql> delimiter &&
+mysql> create procedure showprices(inout var int)
+    -> ^C
+mysql> delimiter &&
+mysql> create procedure showpric(inout var int)
+    -> begin
+    -> select oprice into var from orders where oid = var;
+    -> end &&
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> delimiter ;
+mysql> set @pricess = 3;
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> call showpric(@prices);
+Query OK, 0 rows affected, 1 warning (0.11 sec)
+
+mysql> select @prices;
++---------+
+| @prices |
++---------+
+|    NULL |
++---------+
+1 row in set (0.00 sec)
+
+mysql>

@@ -1,0 +1,63 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 47
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use resto;
+Database changed
+mysql> desc admission;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| id            | int          | NO   | PRI | NULL    | auto_increment |
+| name          | varchar(20)  | YES  |     | NULL    |                |
+| location      | varchar(100) | YES  |     | NULL    |                |
+| contact       | bigint       | YES  |     | NULL    |                |
+| email         | varchar(50)  | YES  |     | NULL    |                |
+| qualification | varchar(20)  | YES  |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+6 rows in set (0.01 sec)
+
+mysql> insert into admission(name,location,contact,email,contact,qualification) values
+    -> ("pushpendra","thane",789654123
+    -> ("pushpendra","thane",789654123^C
+mysql> insert into admission(name,location,contact,email,contact,qualification) values
+    -> ("pushpendra","thane",7898745654,"pushoendra@gmai.com","BSC-IT");
+ERROR 1110 (42000): Column 'contact' specified twice
+mysql> insert into admission(name,location,contact,email,qualification) values
+    -> ("pushpendra","thane",7898745654,"pushoendra@gmai.com","BSC-IT");
+Query OK, 1 row affected (0.09 sec)
+
+mysql> desc batch_info;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| id            | int         | NO   | PRI | NULL    | auto_increment |
+| name          | varchar(20) | YES  |     | NULL    |                |
+| qualification | varchar(20) | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from batch_info;
++----+------------+---------------+
+| id | name       | qualification |
++----+------------+---------------+
+|  1 | pushpendra | BSC-IT        |
++----+------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select * from admission;
++----+------------+----------+------------+---------------------+---------------+
+| id | name       | location | contact    | email               | qualification |
++----+------------+----------+------------+---------------------+---------------+
+|  1 | pushpendra | thane    | 7898745654 | pushoendra@gmai.com | BSC-IT        |
++----+------------+----------+------------+---------------------+---------------+
+1 row in set (0.00 sec)

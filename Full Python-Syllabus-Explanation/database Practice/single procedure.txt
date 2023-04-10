@@ -1,0 +1,216 @@
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| college            |
+| dbuser             |
+| information_schema |
+| myclass            |
+| mysql              |
+| new_db             |
+| performance_schema |
+| resto              |
+| sys                |
++--------------------+
+9 rows in set (0.11 sec)
+
+mysql> use rest0;
+ERROR 1049 (42000): Unknown database 'rest0'
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> use resto;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_resto |
++-----------------+
+| city            |
+| customer        |
+| orders          |
+| std1            |
++-----------------+
+4 rows in set (0.01 sec)
+
+mysql> delimiter ;
+mysql> call singleinput(4);
++-----+------------+------------+-------------------+
+| cid | cname      | cmobile    | cemail            |
++-----+------------+------------+-------------------+
+|   1 | pushpendra | 7388006830 | pushpen@gmail.com |
+|   2 | suraj      | 7896541232 | suraj@gmail.com   |
+|   3 | ritya      | 7897897894 | ritya@gmail.com   |
+|   4 | gauri      | 3214563214 | gauriya@gmail.com |
++-----+------------+------------+-------------------+
+4 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> delimiter &&
+mysql> create procedure data()
+    -> begin
+    -> select * from customer;
+    -> select * from orders;
+    -> end &&
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> delimiter ;
+mysql> call data();
++-----+------------+------------+-------------------+
+| cid | cname      | cmobile    | cemail            |
++-----+------------+------------+-------------------+
+|   1 | pushpendra | 7388006830 | pushpen@gmail.com |
+|   2 | suraj      | 7896541232 | suraj@gmail.com   |
+|   3 | ritya      | 7897897894 | ritya@gmail.com   |
+|   4 | gauri      | 3214563214 | gauriya@gmail.com |
+|   5 | ravi       | 7412589632 | ravi@gmail.com    |
++-----+------------+------------+-------------------+
+5 rows in set (0.00 sec)
+
++-----+---------+--------+---------------------+-------------+
+| oid | omenu   | oprice | odate               | customer_id |
++-----+---------+--------+---------------------+-------------+
+|   1 | pizaa   |    500 | 2022-11-11 10:41:13 |           1 |
+|   2 | pizza   |    500 | 2022-11-11 10:41:13 |           2 |
+|   3 | pizaa   |    500 | 2022-11-11 10:41:13 |           3 |
+|   4 | pizza   |    500 | 2022-11-11 10:41:13 |           4 |
+|   5 | samosa  |     50 | 2022-11-11 10:41:13 |           1 |
+|   6 | paneer  |    600 | 2022-11-11 10:41:13 |           1 |
+|   7 | vadaPav |     22 | 2022-11-15 21:59:14 |           2 |
++-----+---------+--------+---------------------+-------------+
+7 rows in set (0.03 sec)
+
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> deilimer &&
+    -> create procedure singleinput(in var int)
+    -> begin
+    -> select * from customer limit var;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'deilimer &&
+create procedure singleinput(in var int)
+begin
+select * from custome' at line 1
+mysql> drop procedure resto.singleinput;
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> delimiter &&
+mysql> create procedure singleinput(in var int)
+    -> begin
+    -> select * from customer limit var;
+    -> end &&
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter ;
+mysql> call singleinput(4);
++-----+------------+------------+-------------------+
+| cid | cname      | cmobile    | cemail            |
++-----+------------+------------+-------------------+
+|   1 | pushpendra | 7388006830 | pushpen@gmail.com |
+|   2 | suraj      | 7896541232 | suraj@gmail.com   |
+|   3 | ritya      | 7897897894 | ritya@gmail.com   |
+|   4 | gauri      | 3214563214 | gauriya@gmail.com |
++-----+------------+------------+-------------------+
+4 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter%%
+    -> ^C
+mysql> delimiter &&
+mysql> drop procedure singleoutput;
+    -> ^C
+mysql> drop procedure singleoutput;
+    -> ^C
+mysql> delimiter &&
+mysql> create procedure singleoutput(out var int)
+    -> begin
+    -> select oprice into var from orders;
+    -> end &&
+ERROR 1304 (42000): PROCEDURE singleoutput already exists
+mysql> drop procedure singleoutput;
+    -> drop procedure singleoutput();
+    -> ^C
+mysql> delimiter &&
+mysql> creare procedure singlout(out var int)
+    -> begin
+    -> select oprice into var from orders;
+    -> end &&
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'creare procedure singlout(out var int)
+begin
+select oprice into var from orders;' at line 1
+mysql> creare procedure singlout(out var int)
+    -> begin^C
+mysql> create procedure singlout(out var int)
+    -> begin
+    -> select oprice into var from orders;
+    -> end &&
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> delimiter ;
+mysql> call singleout(@result);
+ERROR 1305 (42000): PROCEDURE resto.singleout does not exist
+mysql> call singleout();
+ERROR 1305 (42000): PROCEDURE resto.singleout does not exist
+mysql> drop procedure singleout;
+ERROR 1305 (42000): PROCEDURE resto.singleout does not exist
+mysql> drop procedure resto.singleout;
+ERROR 1305 (42000): PROCEDURE resto.singleout does not exist
+mysql> delimiter &&
+mysql> create procedure singleOutput(out var int)
+    -> begin
+    -> select max(oprice) into var from orders;
+    -> end &&
+ERROR 1304 (42000): PROCEDURE singleOutput already exists
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

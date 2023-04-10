@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>Document</title>
+    <style>
+        body {
+            background-color: red;
+        }
+
+        .container {
+            background-color: grey;
+            width: 60%;
+            height: 50vh;
+
+            margin: 17px auto;
+            border-radius: 6px;
+            padding: 40px
+        }
+        .container:hover{
+            background-color: aqua;
+            box-shadow: 10px ;
+        }
+
+        #log-in {
+            text-align: center;
+            text-shadow: 5px 7px 9px white;
+        }
+
+        #group {
+            padding-left: 40px;
+
+        }
+
+        input[type=email],
+        input[type=password] {
+            width: 100%;
+            height: 30px;
+            border-radius: 2px;
+            background-color: white;
+
+            margin-top: 12px;
+        }
+
+        #submit {
+            padding: 10px;
+            padding-left: 10px;
+            margin-top: 10px;
+            text-align: center;
+            padding-left: 20px;
+
+        }
+        #submit:hover{
+            background-color: blue;
+            color: white;
+        }
+        #email{
+            text-transform: lowercase;
+            font-family:cursive;
+            font-size: larger;
+            font-weight: bolder;
+            
+        }
+        
+    </style>
+</head>
+
+<body>
+    <h1 id="log-in">Login Form </h1>
+    <div class="container" id="container">
+
+        <form>
+            <div id="form-group-1" class="group">
+                <label for="email"> Email -ID </label>
+                <input type="email" name="email" id="email">
+            </div>
+            <div class="form-group-2" class="group">
+                <label for="password" class="group">Password </label>
+                <input type="password" name="password" id="password">
+
+
+            </div>
+            <div class="form-group-3" class="group">
+                <input type="submit" id="submit" value="Login">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

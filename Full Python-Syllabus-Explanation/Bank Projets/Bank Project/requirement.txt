@@ -1,0 +1,28 @@
+---install virtaul environment wrapper---
+
+pip install virtualenvwrapper-win
+
+
+---create virtaul environment(VE)---
+
+mkvirtualenv (envname)myproject
+
+Active VE
+
+workon (envname)
+
+install pachages using pip
+
+pip install django ==4.1.1 # istall version
+
+django-admin --version #check version
+
+
+----install django project------
+django-admin startproject (name)
+
+---install app----
+django-admin startapp (appname)
+
+
+

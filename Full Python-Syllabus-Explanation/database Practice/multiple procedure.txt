@@ -1,0 +1,281 @@
+nce_schema |
+| resto              |
+| sys                |
++--------------------+
+9 rows in set (0.00 sec)
+
+mysql> use resto;
+Database changed
+mysql> drop procedure resto.singleoutput;
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> use resto;
+Database changed
+mysql> call singleinput(2);
++-----+------------+------------+-------------------+
+| cid | cname      | cmobile    | cemail            |
++-----+------------+------------+-------------------+
+|   1 | pushpendra | 7388006830 | pushpen@gmail.com |
+|   2 | suraj      | 7896541232 | suraj@gmail.com   |
++-----+------------+------------+-------------------+
+2 rows in set (0.20 sec)
+
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> drop  resto.singleinput;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'resto.singleinput' at line 1
+mysql> drop  resto.singleoutput;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'resto.singleoutput' at line 1
+mysql> drop procedure resto.singleoutput;
+ERROR 1305 (42000): PROCEDURE resto.singleoutput does not exist
+mysql> drop procedure resto.singleinout;
+ERROR 1305 (42000): PROCEDURE resto.singleinout does not exist
+mysql> drop procedure resto.singleout;
+ERROR 1305 (42000): PROCEDURE resto.singleout does not exist
+mysql> use resto;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_resto |
++-----------------+
+| city            |
+| customer        |
+| orders          |
+| std1            |
++-----------------+
+4 rows in set (0.16 sec)
+
+mysql> delimiter;
+ERROR:
+DELIMITER must be followed by a 'delimiter' character or string
+mysql> delimiter;
+ERROR:
+DELIMITER must be followed by a 'delimiter' character or string
+mysql> call singleinput;
+ERROR 1318 (42000): Incorrect number of arguments for PROCEDURE resto.singleinput; expected 1, got 0
+mysql> call singleinput(4);
++-----+------------+------------+-------------------+
+| cid | cname      | cmobile    | cemail            |
++-----+------------+------------+-------------------+
+|   1 | pushpendra | 7388006830 | pushpen@gmail.com |
+|   2 | suraj      | 7896541232 | suraj@gmail.com   |
+|   3 | ritya      | 7897897894 | ritya@gmail.com   |
+|   4 | gauri      | 3214563214 | gauriya@gmail.com |
++-----+------------+------------+-------------------+
+4 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> delimiter &&
+mysql> create  procedure alldata()
+    -> begin
+    -> select * from customer;
+    -> select * from orders;
+    -> end &&
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> delimiter ;
+mysql> call alldata();
++-----+------------+------------+-------------------+
+| cid | cname      | cmobile    | cemail            |
++-----+------------+------------+-------------------+
+|   1 | pushpendra | 7388006830 | pushpen@gmail.com |
+|   2 | suraj      | 7896541232 | suraj@gmail.com   |
+|   3 | ritya      | 7897897894 | ritya@gmail.com   |
+|   4 | gauri      | 3214563214 | gauriya@gmail.com |
+|   5 | ravi       | 7412589632 | ravi@gmail.com    |
++-----+------------+------------+-------------------+
+5 rows in set (0.01 sec)
+
++-----+---------+--------+---------------------+-------------+
+| oid | omenu   | oprice | odate               | customer_id |
++-----+---------+--------+---------------------+-------------+
+|   1 | pizaa   |    500 | 2022-11-11 10:41:13 |           1 |
+|   2 | pizza   |    500 | 2022-11-11 10:41:13 |           2 |
+|   3 | pizaa   |    500 | 2022-11-11 10:41:13 |           3 |
+|   4 | pizza   |    500 | 2022-11-11 10:41:13 |           4 |
+|   5 | samosa  |     50 | 2022-11-11 10:41:13 |           1 |
+|   6 | paneer  |    600 | 2022-11-11 10:41:13 |           1 |
+|   7 | vadaPav |     22 | 2022-11-15 21:59:14 |           2 |
++-----+---------+--------+---------------------+-------------+
+7 rows in set (0.04 sec)
+
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> delimiter &&
+mysql> create procedure sinput(in var int)
+    -> begin
+    -> select * from orders limit var;
+    -> end &&
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> delimiter ;
+mysql> call sinput(2);
++-----+-------+--------+---------------------+-------------+
+| oid | omenu | oprice | odate               | customer_id |
++-----+-------+--------+---------------------+-------------+
+|   1 | pizaa |    500 | 2022-11-11 10:41:13 |           1 |
+|   2 | pizza |    500 | 2022-11-11 10:41:13 |           2 |
++-----+-------+--------+---------------------+-------------+
+2 rows in set (0.00 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> delimiter &&
+mysql> create procedure showmaxprice(out var int)
+    -> begin
+    -> select max(oprice) into var from orders;
+    -> end &&
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> call showmaxprice(@price);
+    -> select @price;
+    -> ^C
+mysql> delimiter ;
+mysql> call showmaxprice(@price);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select @result;
++------------------+
+| @result          |
++------------------+
+| NULL             |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> call showmaxprice(@resutlt);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select @result;
++------------------+
+| @result          |
++------------------+
+| NULL             |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> delimiter &&
+mysql> create procedure getname(in var int, out var1 varchar(20))
+    -> begin
+    -> select cemail into var1 from customer
+    -> where cid = var;
+    -> end &&
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> delimiter ;
+mysql> call getname(1, @result);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select @result;
++-------------------+
+| @result           |
++-------------------+
+| pushpen@gmail.com |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> call getname(3, @result);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select @result;
++-----------------+
+| @result         |
++-----------------+
+| ritya@gmail.com |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> delimiter&&
+    -> create procedure singlevariable(inout var int)
+    -> begin
+    -> select oprice into var from orders;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter&&create procedure singlevariable(inout var int)
+begin
+select oprice in' at line 1
+mysql> delimiter&&
+    -> create procedure singlevariable(inout var int)
+    -> begin
+    -> select oprice into var from orders where oid = var;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter&&create procedure singlevariable(inout var int)
+begin
+select oprice in' at line 1
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

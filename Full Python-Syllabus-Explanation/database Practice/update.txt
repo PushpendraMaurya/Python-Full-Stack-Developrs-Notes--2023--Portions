@@ -1,0 +1,619 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 52
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use comapny
+ERROR 1049 (42000): Unknown database 'comapny'
+mysql> use comapny;
+ERROR 1049 (42000): Unknown database 'comapny'
+mysql> use company;
+Database changed
+mysql> desc employee;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(20) | YES  |     | NULL    |                |
+| email  | varchar(20) | YES  |     | NULL    |                |
+| mobile | bigint      | YES  |     | NULL    |                |
+| salary | bigint      | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+5 rows in set (0.02 sec)
+
+mysql> select * from employee;
+Empty set (0.01 sec)
+
+mysql> insert into employee values("pushpendra","pushpsdfgail.com",789654,1000);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> alter table employee drop email;
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee drop mobile;
+Query OK, 0 rows affected (0.39 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(20) | YES  |     | NULL    |                |
+| salary | bigint      | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into employee(name,salary) values ("pushpendra",5000);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> select * from employee;
++----+--------+--------+
+| id | name   | salary |
++----+--------+--------+
+|  1 | RItesh |   5000 |
++----+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> insert into employee values("ritesh" 155555);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '155555)' at line 1
+mysql> drop table employee;
+Query OK, 0 rows affected (0.18 sec)
+
+mysql> desc employee;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(20) | YES  |     | NULL    |                |
+| salary | bigint      | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into employee(name,salary) values ("pushpendra",1500);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> select * from employee;
++----+------------+--------+
+| id | name       | salary |
++----+------------+--------+
+|  1 | pushpendra |  15000 |
++----+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> create table student(id int primary key auto_increment, name varchar(20) , location varchar(20),
+    -> qualification varchar(20));
+Query OK, 0 rows affected (0.20 sec)
+
+mysql> create table student_batch(id varchar(20) primary key auto_increment,name varchar(20), qualification varchar(20));
+ERROR 1063 (42000): Incorrect column specifier for column 'id'
+mysql> create table student_batch(id int primary key auto_increment,name varchar(20), qualification varchar(20));
+Query OK, 0 rows affected (0.22 sec)
+
+mysql> desc student_batch;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| id            | int         | NO   | PRI | NULL    | auto_increment |
+| name          | varchar(20) | YES  |     | NULL    |                |
+| qualification | varchar(20) | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> desc student;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| id            | int         | NO   | PRI | NULL    | auto_increment |
+| name          | varchar(20) | YES  |     | NULL    |                |
+| location      | varchar(20) | YES  |     | NULL    |                |
+| qualification | varchar(20) | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into student(name,location,qualification) values("pushpendra","Thane",BSC-IT);
+ERROR 1054 (42S22): Unknown column 'BSC' in 'field list'
+mysql> insert into student(name,location,qualification) values("pushpendra","Thane","BSC-IT");
+Query OK, 1 row affected (0.11 sec)
+
+mysql> select * from student_batch;
++----+------------+---------------+
+| id | name       | qualification |
++----+------------+---------------+
+|  1 | pushpendra | BSC-IT        |
++----+------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select * from student;
++----+------------+----------+---------------+
+| id | name       | location | qualification |
++----+------------+----------+---------------+
+|  1 | pushpendra | Thane    | BSC-IT        |
++----+------------+----------+---------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_company |
++-------------------+
+| employee          |
+| student           |
+| student_batch     |
++-------------------+
+3 rows in set (0.00 sec)
+
+mysql> desc employee;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(20) | YES  |     | NULL    |                |
+| salary | bigint      | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> desc student;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| id            | int         | NO   | PRI | NULL    | auto_increment |
+| name          | varchar(20) | YES  |     | NULL    |                |
+| location      | varchar(20) | YES  |     | NULL    |                |
+| qualification | varchar(20) | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> desc student_batch;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| id            | int         | NO   | PRI | NULL    | auto_increment |
+| name          | varchar(20) | YES  |     | NULL    |                |
+| qualification | varchar(20) | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+------------+--------+
+| id | name       | salary |
++----+------------+--------+
+|  1 | pushpendra |  15000 |
++----+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> update employee set salary = 155550;
+Query OK, 0 rows affected (0.12 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select * from employee;
++----+------------+--------+
+| id | name       | salary |
++----+------------+--------+
+|  1 | pushpendra |  15000 |
++----+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> update employee set salary = 50000;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+------------+--------+
+| id | name       | salary |
++----+------------+--------+
+|  1 | pushpendra |  50000 |
++----+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> create table changed_data(id primary key auto_increment, user varchar(20), date_time datetime, id varchar(20), name varchar(20) ,salary(varchar));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary key auto_increment, user varchar(20), date_time datetime, id varchar(20)' at line 1
+mysql> create table changed_data(userid primary key auto_increment, user varchar(20), date_time datetime, id varchar(20), name varchar(20) ,salary(varchar));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary key auto_increment, user varchar(20), date_time datetime, id varchar(20)' at line 1
+mysql> create table changed_data(userid int primary key auto_increment, user varchar(20), date_time datetime, id varchar(20), name varchar(20) ,salary(varchar));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(varchar))' at line 1
+mysql> create table changed_data(userid int primary key auto_increment, user varchar(20), date_time datetime, id varchar(20), name varchar(20) ,salary(varchar);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(varchar)' at line 1
+mysql> create table changed_data(userid int primary key auto_increment, user varchar(20), date_time datetime, id varchar(20), name varchar(20) ,salary(varchar)
+    -> ^C
+mysql> use company;
+Database changed
+mysql> create table  update_data(userid int primary key auto_increment,
+    -> name varchar(20),
+    -> ^C
+mysql> create table update_data(userid int primary key auto_increment,
+    -> user varchar(20),
+    -> date_time datetime,
+    -> id varchar(20),
+    -> name varchar(20),
+    -> salary varchar(20));
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> desc employee;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(20) | YES  |     | NULL    |                |
+| salary | bigint      | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> desc update_data;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| userid    | int         | NO   | PRI | NULL    | auto_increment |
+| user      | varchar(20) | YES  |     | NULL    |                |
+| date_time | datetime    | YES  |     | NULL    |                |
+| id        | varchar(20) | YES  |     | NULL    |                |
+| name      | varchar(20) | YES  |     | NULL    |                |
+| salary    | varchar(20) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> upate employee set salary = 15000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'upate employee set salary = 15000' at line 1
+mysql> upate employee salary set = 150000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'upate employee salary set = 150000' at line 1
+mysql> update employee set salary = 15000 where id = 1;
+ERROR 1146 (42S02): Table 'company.update_date' doesn't exist
+mysql> drop trigger resto.after_updatr;
+ERROR 1360 (HY000): Trigger does not exist
+mysql> update employee set salary = 15000;
+ERROR 1146 (42S02): Table 'company.update_date' doesn't exist
+mysql> drop table employee;
+Query OK, 0 rows affected (0.19 sec)
+
+mysql> create table employee(int int primary key auto_increment,
+    -> name varchar(20),
+    -> salary bigint);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int int primary key auto_increment,
+name varchar(20),
+salary bigint)' at line 1
+mysql> create table employee(id int primary key auto_increment,
+    -> name varchar (20),
+    -> salary bigint);
+Query OK, 0 rows affected (0.23 sec)
+
+mysql> insert into employee(name,salary) values("Pushpendra",15000);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> update employee set salary = 50000;
+Query OK, 1 row affected (0.13 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from update_data;
+Empty set (0.00 sec)
+
+mysql> update employee set salary = 400000;
+ERROR 1054 (42S22): Unknown column 'datetime' in 'field list'
+mysql> drop table employee;
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> create table employee(id primary key auto_increment,
+    -> name varchar(20),
+    -> salary bigint);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary key auto_increment,
+name varchar(20),
+salary bigint)' at line 1
+mysql> create table employee(id primary key auto_increment,
+    -> name varchar(20),
+    -> salary bigint);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'primary key auto_increment,
+name varchar(20),
+salary bigint)' at line 1
+mysql> create table employee(id int primary key auto_increment,
+    -> name varchar(20),
+    -> salary bigint);
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> select * from employee;
+Empty set (0.00 sec)
+
+mysql> insert into employee(name.salary) values("pushpendra",5000);
+ERROR 1054 (42S22): Unknown column 'name.salary' in 'field list'
+mysql> insert into employee(name,salary) values("pushpendra",5000);
+Query OK, 1 row affected (0.19 sec)
+
+mysql> select * from employee;
++----+------------+--------+
+| id | name       | salary |
++----+------------+--------+
+|  1 | pushpendra |   5000 |
++----+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> update employee set salary = 150000;
+ERROR 1406 (22001): Data too long for column 'name' at row 1
+mysql> desc updated_data;
+ERROR 1146 (42S02): Table 'company.updated_data' doesn't exist
+mysql> desc upate_data;
+ERROR 1146 (42S02): Table 'company.upate_data' doesn't exist
+mysql> desc update_data;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| userid    | int         | NO   | PRI | NULL    | auto_increment |
+| user      | varchar(20) | YES  |     | NULL    |                |
+| date_time | datetime    | YES  |     | NULL    |                |
+| id        | varchar(20) | YES  |     | NULL    |                |
+| name      | varchar(20) | YES  |     | NULL    |                |
+| salary    | varchar(20) | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> alter table update_data modify column id varchar(100);
+Query OK, 0 rows affected (0.30 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table update_data modify column name varchar(100);
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table update_data modify column salary varchar(100);
+Query OK, 0 rows affected (0.25 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update employee set salary = 15000;
+Query OK, 1 row affected (0.15 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee;
++----+------------+--------+
+| id | name       | salary |
++----+------------+--------+
+|  1 | pushpendra |  15000 |
++----+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from update_data;
++--------+----------------+---------------------+------+------------------------+-------------+
+| userid | user           | date_time           | id   | name                   | salary      |
++--------+----------------+---------------------+------+------------------------+-------------+
+|      1 | root@localhost | 2022-11-23 08:58:16 | 1to1 | pushpendratopushpendra | 5000to15000 |
++--------+----------------+---------------------+------+------------------------+-------------+
+1 row in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 53
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use company;
+Database changed
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table employee(id int primary key auto_increment, name varchar(20) ,salary bigint);
+Query OK, 0 rows affected (0.20 sec)
+
+mysql> desc employee;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(20) | YES  |     | NULL    |                |
+| salary | bigint      | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> delimiter
+ERROR:
+DELIMITER must be followed by a 'delimiter' character or string
+mysql> delimiter &&
+mysql> create trigger before_insert before on emp for each row
+    -> begin
+    -> if new.salary <15000 then
+    -> set new.salary = 15000;
+    -> end if;
+    -> end &&
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'on emp for each row
+begin
+if new.salary <15000 then
+set new.salary = 15000;
+end ' at line 1
+mysql> delimiter &&
+mysql> create trigger beinsert before insert on employee for each row
+    -> begin
+    -> if new.salary <15000 then set new.salary = 15000;
+    -> end if;
+    -> end &&
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> delimiter;
+    -> insert into employee values("pushpendra",1500);
+    -> ^C
+mysql> delimiter &&
+mysql> create trigger after_insert after insert on student for each row
+    -> begin
+    -> insert into student_batch(name,qualification) values(new.name, new.qualification);
+    -> end &&
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> delimiter;
+    -> ^C
+mysql> show tables;
+    -> ^C
+mysql> delimiter;
+    -> create trigger update before_update before update on emp for each row
+    -> begin
+    -> if new.salary >8000 then
+    -> set new.salary = id.salary;
+    -> end if;
+    -> end &&;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter;create trigger update before_update before update on emp for each row
+' at line 1
+    -> ^C
+mysql> delimiter;
+    -> create trigger update before_update before update on employee for each row
+    -> begin
+    -> if new.salary >8000 then
+    -> set new.salary = id.salary;
+    -> end if;
+    -> end &&;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter;create trigger update before_update before update on employee for each' at line 1
+    -> set new.salary = id.salary;^C
+mysql> delimiter;
+    -> create trigger update before_update before update on emp for each row
+    -> begin
+    -> if new.salary >8000 then
+    -> set new.salary = old.salary;
+    -> end id;
+    -> end &&
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter;create trigger update before_update before update on emp for each row
+' at line 1
+mysql> delimiter;
+    -> ^C
+mysql> delimiter&&
+ERROR:
+DELIMITER must be followed by a 'delimiter' character or string
+mysql> delimiter &&
+mysql> create trigger before_update before update  on employee for each row
+    -> begin
+    -> if new.salary > 80000 then
+    -> set new.salary = old.salary;
+    -> end if;
+    -> end &&
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> delimiter;
+    -> d^C
+mysql> delimiter;
+    -> create trigger after_update after update on emplopyee for each row
+    -> begin
+    -> insert into update_data(user,datetime,id,name,salary) values
+    -> (current_user(),
+    -> now(),
+    -> concat(old.id, 'to',new.id),
+    -> concat(old.name, 'to',new.name),
+    -> concat(old.salary, 'to',new.salary));
+    -> end &&
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter;create trigger after_update after update on emplopyee for each row
+beg' at line 1
+mysql> delimiter;
+    -> create trigger after_update after update on emplopyee for each row
+    -> begin
+    -> insert into update_data(user,datetime,id,name,salary) values
+    -> (current_user()),
+    -> (current_user()),^Z
+    -> ^C
+mysql> delimiter;
+    -> create trigger after_update after update on emplopyee for each row
+    -> begin
+    -> insert into update_data(user,datetime,id,name,salary) values
+    -> (current_user(),
+    -> concat(old.id,new.id),
+    -> concat^C
+mysql> delimiter;
+    -> create trigger after_update after update on emplopyee for each row
+    -> begin
+    -> insert into update_data(user,datetime,id,name,salary) values
+    -> (current_user(),
+    -> now(),
+    -> concat(old.id , 'to', new,id),
+    -> concat(old.name, 'to', new.name),
+    -> concat(old.salary, 'to',new.salary));
+    -> end &&
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter;create trigger after_update after update on emplopyee for each row
+beg' at line 1
+mysql> delimiter &&
+mysql> create trigger after_updatr after update on employee for each row
+    -> begin
+    -> insert into update_date(user,datetime,id,name.salary) values
+    -> (current_user(),
+    -> now(),
+    -> concat(old.id, 'to' , new.id),
+    -> concat(old.name, 'to', new.name),
+    -> concat(old.salary, 'to',new.salary));
+    -> end &&
+Query OK, 0 rows affected (0.24 sec)
+
+mysql> drop trigger resto.after_updatr;
+    -> ^C
+mysql> delimiter &&
+mysql>
+mysql>
+mysql> end &&^C
+mysql> delimiter &&
+mysql> create trigger after_update after update on employee for each row
+    -> begin
+    -> insert into update_data(user,datetime,id,name,salary) values
+    -> (current_user(),
+    -> now(),
+    -> concat(old.id, 'to' ,new.id),
+    -> concate(old.name , 'to', new.name),
+    -> concate(old.salary,'to',new.salary));
+    -> end &&
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> delimiter &&
+mysql> create trigger after_update after update on employee for each row
+    -> begin
+    -> insert into update_data(user,datetime,id,name,salary) values
+    -> (current_user(),
+    -> now(),
+    -> concat(old.id, 'to' ,new.id),
+    -> concate(old.name , 'to', new.name),
+    -> concate(old.salary,'to',new.salary));
+    -> end &&
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> delimiter &&
+mysql> create trigger after_update after update on employee for each row
+    -> begin
+    -> insert into update_data(user,date_time,id,name,salary) values
+    -> (current_user(),
+    -> now(),
+    -> concat(old.id,'to',new.id)
+    -> concat(old.name,'to',new.name),^C
+mysql> now(),^C
+mysql> delimiter &&
+mysql> create trigger after_update after update on employee for each row
+    -> begin
+    -> insert into update_data(user,date_time,id,name,salary) values
+    -> (current_user(),
+    -> now(),
+    -> concat(old.id,'to',new.id),
+    -> concat(old.name,'to',new.name),
+    -> concat(old.salary,'to',new.salary));
+    -> end &&
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> alter table update_data modify column ;
+    ->

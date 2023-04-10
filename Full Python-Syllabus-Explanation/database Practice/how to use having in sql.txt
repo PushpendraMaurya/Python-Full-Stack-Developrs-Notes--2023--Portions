@@ -1,0 +1,102 @@
+mysql> select customer_id,count(*) from orders where customer_id = 1;
++-------------+----------+
+| customer_id | count(*) |
++-------------+----------+
+|           1 |        3 |
++-------------+----------+
+1 row in set (0.00 sec)
+
+mysql> select customer_id,count(*) from orders where customer_id = 1 as customer order time;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as customer order time' at line 1
+mysql> select customer_id,count(*) from orders where customer_id = 1;
++-------------+----------+
+| customer_id | count(*) |
++-------------+----------+
+|           1 |        3 |
++-------------+----------+
+1 row in set (0.00 sec)
+
+mysql> select customer_id,count(*) from orders where customer_id = 2;
++-------------+----------+
+| customer_id | count(*) |
++-------------+----------+
+|           2 |        1 |
++-------------+----------+
+1 row in set (0.00 sec)
+
+mysql> select customer_id,count(*) from orders where customer_id = 3;
++-------------+----------+
+| customer_id | count(*) |
++-------------+----------+
+|           3 |        1 |
++-------------+----------+
+1 row in set (0.00 sec)
+
+mysql> select customer_id,count(*) from orders where customer_id = 4;
++-------------+----------+
+| customer_id | count(*) |
++-------------+----------+
+|           4 |        1 |
++-------------+----------+
+1 row in set (0.00 sec)
+
+mysql> select customer_id,count(*) from orders where customer_id = 5;
++-------------+----------+
+| customer_id | count(*) |
++-------------+----------+
+|        NULL |        0 |
++-------------+----------+
+1 row in set (0.00 sec)
+
+mysql> select customer_id,count(*) from orders where group by customer_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'group by customer_id' at line 1
+mysql> select customer_id,count(*) from orders  group by customer_id;
++-------------+----------+
+| customer_id | count(*) |
++-------------+----------+
+|           1 |        3 |
+|           2 |        1 |
+|           3 |        1 |
+|           4 |        1 |
++-------------+----------+
+4 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql> select * from orders;
++-----+--------+--------+---------------------+-------------+
+| oid | omenu  | oprice | odate               | customer_id |
++-----+--------+--------+---------------------+-------------+
+|   1 | pizaa  |    500 | 2022-11-11 10:41:13 |           1 |
+|   2 | pizza  |    500 | 2022-11-11 10:41:13 |           2 |
+|   3 | pizaa  |    500 | 2022-11-11 10:41:13 |           3 |
+|   4 | pizza  |    500 | 2022-11-11 10:41:13 |           4 |
+|   5 | samosa |     50 | 2022-11-11 10:41:13 |           1 |
+|   6 | paneer |    600 | 2022-11-11 10:41:13 |           1 |
++-----+--------+--------+---------------------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> select customer_id , min(oprice) from orders group by omeny having min(oprice) > 100;
+ERROR 1054 (42S22): Unknown column 'omeny' in 'group statement'
+mysql> select customer_id , min(oprice) from orders group by omenu having min(oprice) > 100;
++-------------+-------------+
+| customer_id | min(oprice) |
++-------------+-------------+
+|           1 |         500 |
+|           2 |         500 |
+|           1 |         600 |
++-------------+-------------+
+3 rows in set (0.09 sec)
+
+mysql> select customer_id,count(*) from orders group by oid having count(*) >2;
+Empty set (0.00 sec)
+
+mysql> select customer_id,count(*) from orders group by oprice having count(*) >2;
++-------------+----------+
+| customer_id | count(*) |
++-------------+----------+
+|           1 |        4 |
++-------------+----------+
+1 row in set (0.01 sec)
+
+mysql>

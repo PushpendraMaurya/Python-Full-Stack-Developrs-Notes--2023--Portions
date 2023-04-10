@@ -1,0 +1,337 @@
+luser@LM21:~$ mysql -u dbrowser -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'dbrowser'@'localhost' (using password: YES)
+luser@LM21:~$ mysql -u dbuser -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.30-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| BasicDB            |
+| information_schema |
+| performance_schema |
++--------------------+
+3 rows in set (0.02 sec)
+
+mysql> use BasicDB
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> create table customer(id int primary key ,customer_name varchar(50), contact bigint(10) unique, address text, pincode bigint, country varchar(20));
+Query OK, 0 rows affected, 1 warning (0.91 sec)
+
+mysql> desc customer;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| id            | int         | NO   | PRI | NULL    |       |
+| customer_name | varchar(50) | YES  |     | NULL    |       |
+| contact       | bigint      | YES  | UNI | NULL    |       |
+| address       | text        | YES  |     | NULL    |       |
+| pincode       | bigint      | YES  |     | NULL    |       |
+| country       | varchar(20) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+mysql> insert into customer(customer_name,contact,address,pincode,country) values("Puspne^C
+mysql> ^Csert into customer(customer_name,contact,address,pincode,country) values("Puspnedr
+mysql> insert into customer(customer_name,contact,address,pincode,country) values ("pushpendra",7388006830,"Manpada Thane West",400607,India),
+    -> ("Suraj",7896544532,"Thane",400650,USA),
+    -> ("Ritesh",7854123256,"Manpada",541325,UAE),
+    -> ("Ravi",8754213256,"Vikroli",213654,"
+    "> ^C
+mysql> insert into customer(customer_name,contact,address,pincode,country) values ("pushpendra",7388006830,"Manpada Thane West",400607,"India"),
+    -> ("Suraj",7896544532,"Thane",400650,"USA"),
+    -> ("Ravi",8754213256,"Vikroli",213654,"UAE"),
+    -> ("Ritesh",7854123256,"Manpada",541325,"UAE"));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 4
+mysql> insert into customer(customer_name,contact,address,pincode,country) values ("pushpendra",7388006830,"Manpada Thane West",400607,"India"));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> insert into customer(customer_name,contact,address,pincode,country) values ("pushpendra",7388006830,"Manpada Thane West",400607,"India");
+ERROR 1364 (HY000): Field 'id' doesn't have a default value
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> 
+mysql> desc customer;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| id            | int         | NO   | PRI | NULL    |       |
+| customer_name | varchar(50) | YES  |     | NULL    |       |
+| contact       | bigint      | YES  | UNI | NULL    |       |
+| address       | text        | YES  |     | NULL    |       |
+| pincode       | bigint      | YES  |     | NULL    |       |
+| country       | varchar(20) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> alter table customer change column id customer_id int primary key auto_increment;
+ERROR 1068 (42000): Multiple primary key defined
+mysql> alter table customer change column id customer_id int  auto_increment;
+Query OK, 0 rows affected (2.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc customer;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| customer_id   | int         | NO   | PRI | NULL    | auto_increment |
+| customer_name | varchar(50) | YES  |     | NULL    |                |
+| contact       | bigint      | YES  | UNI | NULL    |                |
+| address       | text        | YES  |     | NULL    |                |
+| pincode       | bigint      | YES  |     | NULL    |                |
+| country       | varchar(20) | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into customer(customer_name,contact,address,pincode,country) values ("pushpendra",7388006830,"Manpada Thane West",400607,"India"),
+    -> ("Suraj",7896544532,"Thane",400650,"USA"),
+    -> ("Ritesh",7854123256,"Manpada",541325,"UAE"),
+    -> ("Ravi",8754213256,"Vikroli",213654,"UAE"));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 4
+mysql> insert into customer(customer_name,contact,address,pincode,country) values ("pushpendra",7388006830,"Manpada Thane West",400607,"India"), ("Suraj",7896544532,"Thane",400650,"USA"), ("Ritesh",7854123256,"Manpada",541325,"UAE"), ("Ravi",8754213256,"Vikroli",213654,"UAE");
+Query OK, 4 rows affected (0.09 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from customer;
++-------------+---------------+------------+--------------------+---------+---------+
+| customer_id | customer_name | contact    | address            | pincode | country |
++-------------+---------------+------------+--------------------+---------+---------+
+|           1 | pushpendra    | 7388006830 | Manpada Thane West |  400607 | India   |
+|           2 | Suraj         | 7896544532 | Thane              |  400650 | USA     |
+|           3 | Ritesh        | 7854123256 | Manpada            |  541325 | UAE     |
+|           4 | Ravi          | 8754213256 | Vikroli            |  213654 | UAE     |
++-------------+---------------+------------+--------------------+---------+---------+
+4 rows in set (0.01 sec)
+
+mysql> select count(customer_id),country from customer_id group by country;
+ERROR 1146 (42S02): Table 'BasicDB.customer_id' doesn't exist
+mysql> select count(customer),country from customer_id group by country;
+ERROR 1146 (42S02): Table 'BasicDB.customer_id' doesn't exist
+mysql> select count(customer_id),country from customer group by country;
++--------------------+---------+
+| count(customer_id) | country |
++--------------------+---------+
+|                  1 | India   |
+|                  1 | USA     |
+|                  2 | UAE     |
++--------------------+---------+
+3 rows in set (0.01 sec)
+
+mysql> select count(customer_id),country from customer group by country having count(custmer_id)>1;
+ERROR 1054 (42S22): Unknown column 'custmer_id' in 'having clause'
+mysql> select count(customer_id),country from customer group by country having count(customer_id)>1;
++--------------------+---------+
+| count(customer_id) | country |
++--------------------+---------+
+|                  2 | UAE     |
++--------------------+---------+
+1 row in set (0.00 sec)
+
+mysql> create table resto(cid int primary key auto_increment, cname varchar(50), contact bigint unique , email varchar(50) unique);
+Query OK, 0 rows affected (1.14 sec)
+
+mysql> desc resto;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| cid     | int         | NO   | PRI | NULL    | auto_increment |
+| cname   | varchar(50) | YES  |     | NULL    |                |
+| contact | bigint      | YES  | UNI | NULL    |                |
+| email   | varchar(50) | YES  | UNI | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into resto(cname,contact,email) values ("ritesh",7388005645,"ritesh@gmail.com"),
+    -> ("pushpnedra",7388006830,"pushpendrajnp122@gmail.com"),
+    -> ("suraj",7896541254,"suraj@gmail.com"),
+    -> ("ravi",7896547892,"ravi@gmail.com");
+Query OK, 4 rows affected (0.09 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select* from resto;
++-----+------------+------------+----------------------------+
+| cid | cname      | contact    | email                      |
++-----+------------+------------+----------------------------+
+|   1 | ritesh     | 7388005645 | ritesh@gmail.com           |
+|   2 | pushpnedra | 7388006830 | pushpendrajnp122@gmail.com |
+|   3 | suraj      | 7896541254 | suraj@gmail.com            |
+|   4 | ravi       | 7896547892 | ravi@gmail.com             |
++-----+------------+------------+----------------------------+
+4 rows in set (0.00 sec)
+
+mysql> create table orders(orid int primary key auto_increment,cust_orders varchar(50) not null,price int not null,order_date_time datetime not null, customer_id int not null , foreign key (customer_id) refrences customer(cid));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'refrences customer(cid))' at line 1
+mysql> create table orders(orid int primary key auto_increment,cust_orders varchar(50) not null,price int not null,order_date_time datetime not null, customer_id int not null , foreign key (customer_id) refrences customer(cid));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'refrences customer(cid))' at line 1
+mysql> create table orders(orid int primary key auto_increment,cust_orders varchar(50) not null,price int not null,order_date_time datetime not null, customer_id int not null , foreign key (customer_id) refrences customer(cid));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'refrences customer(cid))' at line 1
+mysql> create table orders( oid int primary key auto_increment,
+    -> corder varchar(50) not null,
+    -> price int not null,
+    -> odate datetime,
+    -> customer_id int not null,
+    -> foreign key (customer_id) references customer(cid));
+ERROR 3734 (HY000): Failed to add the foreign key constraint. Missing column 'cid' for constraint 'orders_ibfk_1' in the referenced table 'customer'
+mysql> create table orders( oid int primary key auto_increment, corder varchar(50) not null, price int not null, odate datetime, customer_id int not null, foreign key (customer_id) references resto(cid));
+Query OK, 0 rows affected (0.47 sec)
+
+mysql> desc orders;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| oid         | int         | NO   | PRI | NULL    | auto_increment |
+| corder      | varchar(50) | NO   |     | NULL    |                |
+| price       | int         | NO   |     | NULL    |                |
+| odate       | datetime    | YES  |     | NULL    |                |
+| customer_id | int         | NO   | MUL | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into orders(corder,price,odate,customer_id) values (^C
+mysql> desc resto;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| cid     | int         | NO   | PRI | NULL    | auto_increment |
+| cname   | varchar(50) | YES  |     | NULL    |                |
+| contact | bigint      | YES  | UNI | NULL    |                |
+| email   | varchar(50) | YES  | UNI | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> desc orders;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| oid         | int         | NO   | PRI | NULL    | auto_increment |
+| corder      | varchar(50) | NO   |     | NULL    |                |
+| price       | int         | NO   |     | NULL    |                |
+| odate       | datetime    | YES  |     | NULL    |                |
+| customer_id | int         | NO   | MUL | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into orders(corder,price,odate,customer_id) values ("pizza",500,2022-04-01,1);
+ERROR 1292 (22007): Incorrect datetime value: '2017' for column 'odate' at row 1
+mysql> insert into orders(corder,price,odate,customer_id) values ("pizza",500,now(),1);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from orders;
++-----+--------+-------+---------------------+-------------+
+| oid | corder | price | odate               | customer_id |
++-----+--------+-------+---------------------+-------------+
+|   1 | pizza  |   500 | 2022-11-10 16:54:48 |           1 |
++-----+--------+-------+---------------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> insert into orders(corder,price,odate,customer_id) values ("pizza",500,now(),1);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from orders;
++-----+--------+-------+---------------------+-------------+
+| oid | corder | price | odate               | customer_id |
++-----+--------+-------+---------------------+-------------+
+|   1 | pizza  |   500 | 2022-11-10 16:54:48 |           1 |
+|   2 | pizza  |   500 | 2022-11-10 16:55:52 |           1 |
++-----+--------+-------+---------------------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into orders(corder,price,odate,customer_id) values ("samosa",500,now(),1);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into orders(corder,price,odate,customer_id) values ("samosa",500,now(),2);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into orders(corder,price,odate,customer_id) values ("burger",500,now(),3);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into orders(corder,price,odate,customer_id) values ("pani puri",20,now(),4);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into orders(corder,price,odate,customer_id) values ("pani puri",20,now(),3);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into orders(corder,price,odate,customer_id) values ("pani puri",20,now(),2);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into orders(corder,price,odate,customer_id) values ("pani puri",20,now(),4);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from orders;
++-----+-----------+-------+---------------------+-------------+
+| oid | corder    | price | odate               | customer_id |
++-----+-----------+-------+---------------------+-------------+
+|   1 | pizza     |   500 | 2022-11-10 16:54:48 |           1 |
+|   2 | pizza     |   500 | 2022-11-10 16:55:52 |           1 |
+|   3 | samosa    |   500 | 2022-11-10 16:56:37 |           1 |
+|   4 | samosa    |   500 | 2022-11-10 16:56:49 |           2 |
+|   5 | burger    |   500 | 2022-11-10 16:57:17 |           3 |
+|   6 | pani puri |    20 | 2022-11-10 16:57:37 |           4 |
+|   7 | pani puri |    20 | 2022-11-10 16:57:46 |           3 |
+|   8 | pani puri |    20 | 2022-11-10 16:57:51 |           2 |
+|   9 | pani puri |    20 | 2022-11-10 16:57:59 |           4 |
++-----+-----------+-------+---------------------+-------------+
+9 rows in set (0.00 sec)
+
+mysql> desc resto;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| cid     | int         | NO   | PRI | NULL    | auto_increment |
+| cname   | varchar(50) | YES  |     | NULL    |                |
+| contact | bigint      | YES  | UNI | NULL    |                |
+| email   | varchar(50) | YES  | UNI | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> desc orders;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| oid         | int         | NO   | PRI | NULL    | auto_increment |
+| corder      | varchar(50) | NO   |     | NULL    |                |
+| price       | int         | NO   |     | NULL    |                |
+| odate       | datetime    | YES  |     | NULL    |                |
+| customer_id | int         | NO   | MUL | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from orders;
++-----+-----------+-------+---------------------+-------------+
+| oid | corder    | price | odate               | customer_id |
++-----+-----------+-------+---------------------+-------------+
+|   1 | pizza     |   500 | 2022-11-10 16:54:48 |           1 |
+|   2 | pizza     |   500 | 2022-11-10 16:55:52 |           1 |
+|   3 | samosa    |   500 | 2022-11-10 16:56:37 |           1 |
+|   4 | samosa    |   500 | 2022-11-10 16:56:49 |           2 |
+|   5 | burger    |   500 | 2022-11-10 16:57:17 |           3 |
+|   6 | pani puri |    20 | 2022-11-10 16:57:37 |           4 |
+|   7 | pani puri |    20 | 2022-11-10 16:57:46 |           3 |
+|   8 | pani puri |    20 | 2022-11-10 16:57:51 |           2 |
+|   9 | pani puri |    20 | 2022-11-10 16:57:59 |           4 |
++-----+-----------+-------+---------------------+-------------+
+9 rows in set (0.00 sec)
+
+mysql> ^C
+mysql> 
+./DataExcelFA
+

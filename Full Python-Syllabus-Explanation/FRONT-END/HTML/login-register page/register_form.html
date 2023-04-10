@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Form</title>
+</head>
+
+<body>
+       <!-- Register form start here -->
+    <form action="">
+        <center><h2>Register Form</h2></center>
+        <hr>
+        <!-- first name code here -->
+        <div>
+            <label for="">First Name: </label>
+            <input type="text" name="fname" id="fname">
+        </div>
+        <!-- middle name code here -->
+        <div>
+            <label for="">Middle Name:</label>
+            <input type="text" name="mname" id="mname" >
+        
+        </div>
+                <!-- last name code here -->
+        <div>
+            <label for=""> Last Name :</label>
+            <input type="text" name="lname" id="lanme">
+
+        </div>
+        <div>
+          <label>PassWord :</label>
+          <input type="password" name="pass1" id="pass1">
+        </div>
+        <div>
+          <label>Confirm PasssWord</label>
+          <input type="password" name="pass2"  id="pass2">
+        </div>
+        <div>
+          <label>Select Date Of Birth</label>
+          <input type="date">
+        </div>
+        <div>
+          <p>Gender</p>
+          <div>
+            <input type="radio" name="gender" value="male" id="male">Male
+          </div>
+          <div>
+            <input type="radio" name="gender" value="female" id="female">Female
+          </div>
+          <div>
+            <input type="radio" name="gender" value="other" id="other">Other
+          </div>
+
+        </div>
+
+        <div>
+          <h2>Select Languages</h2>
+          <input type="checkbox" name="Hindi">
+          <label>Hindi</label>
+          <input type="checkbox" name="english">
+          <label>English</label>
+          <input type="checkbox" name="marathi">
+          <label>Marathi</label>
+          <input type="checkbox" name="gujrati">
+          <label>Gujrati</label>
+        </div>
+
+
+        <div>
+          <p>Select Course</p>
+          <select name="course" id="course" >
+            <option selected>Select</option>
+            <option value="python">Python</option>
+            <option value="sql">Sql</option>
+            <option value="Java">java</option>
+            <option value="Html">Html</option>
+          </select>
+        </div>
+
+
+        
+
+        <div>
+
+          <!-- contact number -->
+
+          <p>Contact No :</p>
+          <input type="text" value="+91" size="2">
+          <input type="text" name ="contact" id="contact" placeholder="enter contact no">
+
+        </div>
+
+        <div>
+          <label>Enter Your Email :</label>
+          <input type="email" name="email" placeholder="enter your emaail">
+        </div>
+
+        <!-- take user address  -->
+        <textarea name="address" id="address" cols="30" rows="10">Enter your addres here</textarea>
+
+
+        <!-- take inout to take any type file -->
+
+
+      <div>
+        <label>File Profile Picker </label>
+        <input type="file" name="file" id="file">
+
+      </div>
+
+      <div>
+        <input type="submit" value="submit">
+        <input type="reset" value="reset">
+      </div>
+      </form>
+
+</body>
+
+</html>
